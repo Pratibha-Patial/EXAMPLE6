@@ -1,0 +1,88 @@
+<html>
+<head>
+</head>
+<body>
+<button onclick="getData()">Click</button>
+<div id="demo"></div>
+<script>
+function getData()
+{
+var XHR=new XMLHttpRequest();
+XHR.onreadystatechange=function()
+{
+if(this.readyState==4 && this.status==200)
+{
+var data=this.responseText;
+var x=JSON.parse(data);
+console.log(x);
+}
+}
+XHR.open("POST","https://randomuser.me/api",true);
+XHR.setRequestHeader("content-type","application/json");
+XHR.send(JSON.stringify({name:'abc'}));
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <button id="btn" onclick="func()">Click Me</button>
+    <script>
+      function func() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://reqres.in/api/users?page=2", true);
+        //
+        // event handler for "when the request completes"
+        xhr.onload = function() {
+          if (this.status == 200) {
+            let users = JSON.parse(this.responseText);
+            //let output = "";
+            console.log(users);
+          }
+        };
+
+        // Finally send the request
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <button id="btn" onclick="func()">Click Me</button>
+    <script>
+      function func() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://reqres.in/api/23", true);
+        //
+        // event handler for "when the request completes"
+        xhr.onerror = function() {
+          if (this.status == 404) {
+            let users = JSON.parse(this.responseText);
+            //let output = "";
+            console.log(users);
+          }
+        };
+
+        // Finally send the request
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>
+
